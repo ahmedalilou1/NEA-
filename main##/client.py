@@ -1,4 +1,4 @@
-class Patient():
+class Client():
   def __init__(self, firstName="", lastName="", dob="", gender="", address="", phone="", email=""):
     self.firstName = firstName
     self.lastName = lastName
@@ -9,7 +9,7 @@ class Patient():
     self.email = email
     self.appointments = []
     self.messages = []
-    self.patientId = 0
+    self.clientId = 0
 
   def getFirstName(self):
     return self.firstName

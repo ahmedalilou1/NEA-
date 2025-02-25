@@ -1,6 +1,6 @@
 from os import *
 from ioStuff import *
-from patient import * 
+from client import * 
 
 class Menu:
   def __init__(self):
@@ -26,85 +26,85 @@ class Menu:
     self.minMenuVal = 1
     self.maxMenuVal = 5
     self.menuOptions.clear()
-    self.menuOptions.append("1. Appointments")
-    self.menuOptions.append("2. Patients")
+    self.menuOptions.append("1. properties")
+    self.menuOptions.append("2. clients")
     self.menuOptions.append("3. Messages")
     self.menuOptions.append("4. Reports")
     self.menuOptions.append("5. Staff availabilty")
     self.displayPage()
     choice = getNumber(self.breadcrumb, self.minMenuVal, self.maxMenuVal)
     if choice == 1:
-      self.appointments()
+      self.properties()
     elif choice == 2:
-      self.patients()
+      self.clients()
       
   #======================================
 
-  def appointments(self):
-    self.pageName = "Display Appointments"
+  def properties(self):
+    self.pageName = "Display properties"
     self.breadcrumb = "Dashboard>"
     self.minMenuVal = 1
     self.maxMenuVal = 4
     self.menuOptions.clear()    
-    self.menuOptions.append("1. New appointment")
-    self.menuOptions.append("2. Display appointments (day view)")
-    self.menuOptions.append("3. Display appointments (week view)")
+    self.menuOptions.append("1. New properties")
+    self.menuOptions.append("2. Display properties (day view)")
+    self.menuOptions.append("3. Display properties (week view)")
     self.menuOptions.append("4. Back")  
     self.displayPage()
     choice = getNumber(self.breadcrumb, self.minMenuVal, self.maxMenuVal)
     if choice == 1:
-      self.newAppointment()
+      self.newproperties()
     elif choice == 2:
-      self.displayDayViewAppointments()
+      self.displayDayViewproperties()
     elif choice == 3:
-      self.displayWeekViewAppointments()
+      self.displayWeekViewproperties()
     elif choice == 4:
       self.displayDashboard()
 
-  def newAppointment(self):
-    self.pageName = "New Appointment"
-    self.breadcrumb = "Dashboard / New Appointment>"
+  def newproperties(self):
+    self.pageName = "New properties"
+    self.breadcrumb = "Dashboard / New properties>"
     self.minMenuVal = 1
     self.maxMenuVal = 2
     
   #======================================
 
   
-  def patients(self):
-    self.pageName = "Patients"
+  def clients(self):
+    self.pageName = "clients"
     self.breadcrumb = "Dashboard>"
     self.minMenuVal = 1
     self.maxMenuVal = 4
     self.menuOptions.clear()    
-    self.menuOptions.append("1. New patient")
-    self.menuOptions.append("2. Remove patient")
-    self.menuOptions.append("3. Display patients")
+    self.menuOptions.append("1. New client")
+    self.menuOptions.append("2. Remove client")
+    self.menuOptions.append("3. Display clients")
     self.menuOptions.append("4. Back")  
     self.displayPage()
     choice = getNumber(self.breadcrumb, self.minMenuVal, self.maxMenuVal)
     if choice == 1:
-      tmpNewPatient = Patient()
-      self.newPatient(tmpNewPatient)
+      tmpNewclient = client()
+      self.newclient(tmpNewclient)
     elif choice == 2:
-      self.removePatient
+      self.removeclient
     elif choice == 3:
-      self.displayPatients() 
+      self.displayclients() 
     elif choice == 4:
       self.displayDashboard()
 
   
-  def newPatient(self, tmpNewPatient):
+  def newclient(self, tmpNewclient):
             
-    self.firstName = tmpNewPatient.getFirstName()
-    self.lastName = tmpNewPatient.getLastName()
-    self.dob = tmpNewPatient.getDob()
-    self.address = tmpNewPatient.getAddress()
-    self.phone = tmpNewPatient.getPhone()
-    self.email = tmpNewPatient.getEmail()
-    self.gender = tmpNewPatient.getGender()
+    self.firstName = tmpNewclient.getFirstName()
+    self.lastName = tmpNewclient.getLastName()
+    self.dob = tmpNewclient.getDob()
+    self.address = tmpNewclient.getAddress()
+    self.phone = tmpNewclient.getPhone()
+    self.email = tmpNewclient.getEmail()
+    self.gender = tmpNewclient.getGender()
     
-    self.pageName = "New Patient"
-    self.breadcrumb = "Dashboard / New Patient>"
+    self.pageName = "New client"
+    self.breadcrumb = "Dashboard / New client>"
     self.minMenuVal = 1
     self.maxMenuVal = 9
 
@@ -116,113 +116,113 @@ class Menu:
     self.menuOptions.append("5. Address: " + self.address)
     self.menuOptions.append("6. Phone number: " + self.phone)
     self.menuOptions.append("7. Email: " + self.email)
-    self.menuOptions.append("8. Submit new patient to database")
+    self.menuOptions.append("8. Submit new client to database")
     self.menuOptions.append("9. Back")
     self.displayPage()
     choice = getNumber(self.breadcrumb, self.minMenuVal, self.maxMenuVal)
     if choice == 1:
       choice = getString("First name: ", minLen=1, maxLen=20)
       self.firstName = choice
-      tmpNewPatient.firstName = choice
-      self.newPatient(tmpNewPatient)
+      tmpNewclient.firstName = choice
+      self.newclient(tmpNewclient)
       
     elif choice == 2:
       choice = getString("Last name: ", minLen=1, maxLen=20)
       self.lastName = choice
-      tmpNewPatient.lastName = choice
-      self.newPatient(tmpNewPatient)
+      tmpNewclient.lastName = choice
+      self.newclient(tmpNewclient)
   
     elif choice == 3:
       choice = getDate("Date of birth (dd/mm/yyyy): ", minLen=1, maxLen=10)
       self.dob = choice
-      tmpNewPatient.dob= choice
-      self.newPatient(tmpNewPatient)
+      tmpNewclient.dob= choice
+      self.newclient(tmpNewclient)
 
     elif choice == 4:
       choice = getGender("Gender: (m/f)")
       self.gender = choice
-      tmpNewPatient.gender= choice
-      self.newPatient(tmpNewPatient)
+      tmpNewclient.gender= choice
+      self.newclient(tmpNewclient)
 
     elif choice == 5:
       choice = getString("Address", 1, 50)
       self.address = choice
-      tmpNewPatient.address = choice
-      self.newPatient(tmpNewPatient)
+      tmpNewclient.address = choice
+      self.newclient(tmpNewclient)
 
     elif choice == 6:
       choice = getPhoneNumber("Phone number:")
       self.phone = choice
-      tmpNewPatient.phone = choice
-      self.newPatient(tmpNewPatient)
+      tmpNewclient.phone = choice
+      self.newclient(tmpNewclient)
 
     elif choice == 7:
       choice = getEmail("eMail:")
       self.email = choice
-      tmpNewPatient.email= choice
-      self.newPatient(tmpNewPatient)
+      tmpNewclient.email= choice
+      self.newclient(tmpNewclient)
 
     elif choice == 8:
-      if getYesNo("Are you sure you want to submit this patient?") == "y":
-        db.addPatientToDB(tmpNewPatient)
+      if getYesNo("Are you sure you want to submit this client?") == "y":
+        db.addclientToDB(tmpNewclient)
         self.displayDashboard()
       else:
-        self.newPatient(tmpNewPatient)
+        self.newclient(tmpNewclient)
       
     elif choice == 9:
       self.displayDashboard()
 #-------------------
 
-def displayAppointments(self):
-  self.pageName = "DisplayAppointments"
+def displayproperties(self):
+  self.pageName = "Displayproperties"
   self.breadcrumb = "Dashboard>"
   self.minMenuVal = 1
   self.maxMenuVal = 4
   self.menuOptions.clear()
-  self.menuOptions.append("1. Display appointments (day view)")
-  self.menuOptions.append("2. Display appointments (week view)")
+  self.menuOptions.append("1. Display properties (day view)")
+  self.menuOptions.append("2. Display properties (week view)")
   self.menuOptions.append("3. Back")
   self.displayPage()
   
   choice = getNumber(self.breadcrumb, self.minMenuVal, self.maxMenuVal)
   if choice == 1:
-    self.displayDayViewAppointments()
+    self.displayDayViewproperties()
   elif choice == 2:
-    self.displayWeekViewAppointments()
+    self.displayWeekViewproperties()
   elif choice == 3:
     self.displayDashboard()
 
-def displayDayViewAppointments(self):
-  self.pageName = "Display Appointments (day view)"
-  self.breadcrumb = "Dashboard / Display Appointments (day view)>"
+def displayDayViewproperties(self):
+  self.pageName = "Display properties (day view)"
+  self.breadcrumb = "Dashboard / Display properties (day view)>"
   self.minMenuVal = 1
   self.maxMenuVal = 2
 
   self.menuOptions.clear()
-  self.menuOptions.append("1. Display appointments for today")
+  self.menuOptions.append("1. Display properties for today")
   self.menuOptions.append("2. Back")
   self.displayPage()
 
   choice = getNumber(self.breadcrumb, self.minMenuVal, self.maxMenuVal)
   if choice == 1:
-    self.displayDayViewAppointments()
+    self.displayDayViewproperties()
   elif choice == 2:
     self.displayDashboard()
 
-def displayWeekViewAppointments(self):
-  self.pageName = "Display Appointments (week view)"
-  self.breadcrumb = "Dashboard / Display Appointments (week view)>"
+def displayWeekViewproperties(self):
+  self.pageName = "Display properties (week view)"
+  self.breadcrumb = "Dashboard / Display properties (week view)>"
   self.minMenuVal = 1
   self.maxMenuVal = 2
 
   self.menuOptions.clear()
-  self.menuOptions.append("1. Display appointments for this week")
+  self.menuOptions.append("1. Display properties for this week")
   self.menuOptions.append("2. Back")
   self.displayPage()
 
   choice = getNumber(self.breadcrumb, self.minMenuVal, self.maxMenuVal)
   if choice == 1:
-    self.displayWeekViewAppointments()
+    self.displayWeekViewproperties()
   elif choice == 2:
     self.displayDashboard()
 
