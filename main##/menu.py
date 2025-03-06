@@ -81,6 +81,8 @@ class Menu:
     self.menuOptions.append("4. Back")  
     self.displayPage()
     choice = getNumber(self.breadcrumb, self.minMenuVal, self.maxMenuVal)
+    def client():
+      return 0
     if choice == 1:
       tmpNewclient = client()
       self.newclient(tmpNewclient)
@@ -162,6 +164,7 @@ class Menu:
       self.newclient(tmpNewclient)
 
     elif choice == 8:
+      db = {3, 2}
       if getYesNo("Are you sure you want to submit this client?") == "y":
         db.addclientToDB(tmpNewclient)
         self.displayDashboard()
@@ -172,58 +175,58 @@ class Menu:
       self.displayDashboard()
 #-------------------
 
-def displayproperties(self):
-  self.pageName = "Displayproperties"
-  self.breadcrumb = "Dashboard>"
-  self.minMenuVal = 1
-  self.maxMenuVal = 4
-  self.menuOptions.clear()
-  self.menuOptions.append("1. Display properties (day view)")
-  self.menuOptions.append("2. Display properties (week view)")
-  self.menuOptions.append("3. Back")
-  self.displayPage()
-  
-  choice = getNumber(self.breadcrumb, self.minMenuVal, self.maxMenuVal)
-  if choice == 1:
-    self.displayDayViewproperties()
-  elif choice == 2:
-    self.displayWeekViewproperties()
-  elif choice == 3:
-    self.displayDashboard()
+  def displayproperties(self):
+    self.pageName = "Displayproperties"
+    self.breadcrumb = "Dashboard>"
+    self.minMenuVal = 1
+    self.maxMenuVal = 4
+    self.menuOptions.clear()
+    self.menuOptions.append("1. Display properties (day view)")
+    self.menuOptions.append("2. Display properties (week view)")
+    self.menuOptions.append("3. Back")
+    self.displayPage()
+    
+    choice = getNumber(self.breadcrumb, self.minMenuVal, self.maxMenuVal)
+    if choice == 1:
+      self.displayDayViewproperties()
+    elif choice == 2:
+      self.displayWeekViewproperties()
+    elif choice == 3:
+      self.displayDashboard()
 
-def displayDayViewproperties(self):
-  self.pageName = "Display properties (day view)"
-  self.breadcrumb = "Dashboard / Display properties (day view)>"
-  self.minMenuVal = 1
-  self.maxMenuVal = 2
+  def displayDayViewproperties(self):
+    self.pageName = "Display properties (day view)"
+    self.breadcrumb = "Dashboard / Display properties (day view)>"
+    self.minMenuVal = 1
+    self.maxMenuVal = 2
 
-  self.menuOptions.clear()
-  self.menuOptions.append("1. Display properties for today")
-  self.menuOptions.append("2. Back")
-  self.displayPage()
+    self.menuOptions.clear()
+    self.menuOptions.append("1. Display properties for today")
+    self.menuOptions.append("2. Back")
+    self.displayPage()
 
-  choice = getNumber(self.breadcrumb, self.minMenuVal, self.maxMenuVal)
-  if choice == 1:
-    self.displayDayViewproperties()
-  elif choice == 2:
-    self.displayDashboard()
+    choice = getNumber(self.breadcrumb, self.minMenuVal, self.maxMenuVal)
+    if choice == 1:
+      self.displayDayViewproperties()
+    elif choice == 2:
+      self.displayDashboard()
 
-def displayWeekViewproperties(self):
-  self.pageName = "Display properties (week view)"
-  self.breadcrumb = "Dashboard / Display properties (week view)>"
-  self.minMenuVal = 1
-  self.maxMenuVal = 2
+  def displayWeekViewproperties(self):
+    self.pageName = "Display properties (week view)"
+    self.breadcrumb = "Dashboard / Display properties (week view)>"
+    self.minMenuVal = 1
+    self.maxMenuVal = 2
 
-  self.menuOptions.clear()
-  self.menuOptions.append("1. Display properties for this week")
-  self.menuOptions.append("2. Back")
-  self.displayPage()
+    self.menuOptions.clear()
+    self.menuOptions.append("1. Display properties for this week")
+    self.menuOptions.append("2. Back")
+    self.displayPage()
 
-  choice = getNumber(self.breadcrumb, self.minMenuVal, self.maxMenuVal)
-  if choice == 1:
-    self.displayWeekViewproperties()
-  elif choice == 2:
-    self.displayDashboard()
+    choice = getNumber(self.breadcrumb, self.minMenuVal, self.maxMenuVal)
+    if choice == 1:
+      self.displayWeekViewproperties()
+    elif choice == 2:
+      self.displayDashboard()
 
 
 
