@@ -108,7 +108,6 @@ class Menu:
     self.breadcrumb = "Dashboard / New client>"
     self.minMenuVal = 1
     self.maxMenuVal = 9
-
     self.menuOptions.clear()
     self.menuOptions.append("1. First name: " + self.firstName)
     self.menuOptions.append("2. Last name: " + self.lastName)
@@ -121,6 +120,7 @@ class Menu:
     self.menuOptions.append("9. Back")
     self.displayPage()
     choice = getNumber(self.breadcrumb, self.minMenuVal, self.maxMenuVal)
+    
     if choice == 1:
       choice = getString("First name: ", minLen=1, maxLen=20)
       self.firstName = choice
@@ -227,6 +227,3 @@ class Menu:
       self.displayWeekViewproperties()
     elif choice == 2:
       self.displayDashboard()
-
-
-
