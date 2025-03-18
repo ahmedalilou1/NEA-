@@ -1,6 +1,7 @@
 from os import *
 from ioStuff import *
 from client import * 
+from dbStuff import Database
 
 class Menu:
   def __init__(self):
@@ -93,16 +94,13 @@ class Menu:
     elif choice == 4:
       self.displayDashboard()
 
+
   
   def newclient(self, tmpNewclient):
-            
-    self.firstName = tmpNewclient.getFirstName()
-    self.lastName = tmpNewclient.getLastName()
-    self.dob = tmpNewclient.getDob()
-    self.address = tmpNewclient.getAddress()
-    self.phone = tmpNewclient.getPhone()
-    self.email = tmpNewclient.getEmail()
-    self.gender = tmpNewclient.getGender()
+    self.firstName = ""
+    self.lastName = ""
+    self.dob = ""
+    
     
     self.pageName = "New client"
     self.breadcrumb = "Dashboard / New client>"
@@ -112,10 +110,6 @@ class Menu:
     self.menuOptions.append("1. First name: " + self.firstName)
     self.menuOptions.append("2. Last name: " + self.lastName)
     self.menuOptions.append("3. Date of birth: " + self.dob)
-    self.menuOptions.append("4. Gender: " + self.gender)
-    self.menuOptions.append("5. Address: " + self.address)
-    self.menuOptions.append("6. Phone number: " + self.phone)
-    self.menuOptions.append("7. Email: " + self.email)
     self.menuOptions.append("8. Submit new client to database")
     self.menuOptions.append("9. Back")
     self.displayPage()
@@ -124,56 +118,48 @@ class Menu:
     if choice == 1:
       choice = getString("First name: ", minLen=1, maxLen=20)
       self.firstName = choice
-      tmpNewclient.firstName = choice
       self.newclient(tmpNewclient)
       
     elif choice == 2:
       choice = getString("Last name: ", minLen=1, maxLen=20)
       self.lastName = choice
-      tmpNewclient.lastName = choice
       self.newclient(tmpNewclient)
   
     elif choice == 3:
       choice = getDate("Date of birth (dd/mm/yyyy): ", minLen=1, maxLen=10)
       self.dob = choice
-      tmpNewclient.dob= choice
       self.newclient(tmpNewclient)
 
     elif choice == 4:
       choice = getGender("Gender: (m/f)")
       self.gender = choice
-      tmpNewclient.gender= choice
       self.newclient(tmpNewclient)
 
     elif choice == 5:
       choice = getString("Address", 1, 50)
       self.address = choice
-      tmpNewclient.address = choice
       self.newclient(tmpNewclient)
 
     elif choice == 6:
       choice = getPhoneNumber("Phone number:")
       self.phone = choice
-      tmpNewclient.phone = choice
       self.newclient(tmpNewclient)
 
     elif choice == 7:
       choice = getEmail("eMail:")
       self.email = choice
-      tmpNewclient.email= choice
       self.newclient(tmpNewclient)
 
     elif choice == 8:
-      db = {3, 2}
       if getYesNo("Are you sure you want to submit this client?") == "y":
-        db.addclientToDB(tmpNewclient)
+        Database.addClientToDB(self.firstName, self.lastName, self.dob)
         self.displayDashboard()
       else:
         self.newclient(tmpNewclient)
       
     elif choice == 9:
       self.displayDashboard()
-#-------------------
+      
 
   def displayproperties(self):
     self.pageName = "Displayproperties"

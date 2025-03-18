@@ -96,6 +96,13 @@ class Database:
       return True
     except:
       return False
+    
+  def addClientToDB(self, username, password, name):
+    try:
+      self.execute("INSERT INTO players (username, password, name) VALUES (?, ?, ?)", (username, password, name))
+      return True
+    except:
+      return False
 
 
   def showCurrentUsernames(self):
