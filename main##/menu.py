@@ -39,6 +39,27 @@ class Menu:
     elif choice == 2:
       self.clients()
       
+    def displayClients(self):
+      self.pagename = "Clients:"
+      self.breadcrumb = "Dashboard / Clients>"
+      self.minMenuVal = 1
+      self.maxMenuVal = 2
+      self.menuOptions.clear()
+      self.menuOptions.append("1. Display clients")
+      self.menuOptions.append("2. Back")
+      self.displayPage()
+      choice = getNumber(self.breadcrumb, self.minMenuVal, self.maxMenuVal)
+      if choice == 1:
+        self.displayClients()
+      elif choice == 2:
+        self.displayDashboard()
+    
+    def editClient(self):
+      self.pageName = "Edit a client"
+      self.breadcrumb = "Dashboard / Edit a client>"
+      self.minMenuVal = 1
+      self.maxMenuVal = 2
+      
   #======================================
 
   def properties(self):
@@ -90,7 +111,7 @@ class Menu:
     elif choice == 2:
       self.removeclient
     elif choice == 3:
-      self.displayclients() 
+      self.displayClients()
     elif choice == 4:
       self.displayDashboard()
 
@@ -152,7 +173,7 @@ class Menu:
 
     elif choice == 8:
       if getYesNo("Are you sure you want to submit this client?") == "y":
-        Database.addClientToDB(self.firstName, self.lastName, self.dob)
+        Database.addClientToDB(self, self.firstName, self.lastName, self.dob)
         self.displayDashboard()
       else:
         self.newclient(tmpNewclient)

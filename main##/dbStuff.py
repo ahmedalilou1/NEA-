@@ -97,12 +97,15 @@ class Database:
     except:
       return False
     
+    
   def addClientToDB(self, username, password, name):
     try:
       self.execute("INSERT INTO players (username, password, name) VALUES (?, ?, ?)", (username, password, name))
       return True
     except:
       return False
+    
+  
 
 
   def showCurrentUsernames(self):
@@ -112,9 +115,15 @@ class Database:
     for item in data:
       print(item[0], " (score: " + str(item[2]) + ")" + item[3])
     print("---------------")
+    
+  
 
   def markWordAsGuessed(self, playerId, wordId):
     self.execute("INSERT INTO playerWords (playerId, wordId, correct) VALUES (?, ?, ?) ",  (playerId, wordId, True))
+    
+  def deleteClient(self, username):
+    self.execute("DELETE FROM players WHERE username = ?", (username,))
+    print("Client deleted")
 
   def markWordAsUnguessed(self, playerId, wordId):
     self.execute("INSERT INTO playerWords (playerId, wordId, correct) VALUES (?, ?, ?) ",  (playerId, wordId, False))
