@@ -43,15 +43,6 @@ class Database:
     def close(self):
         self.conn.close()
 
-    def execute(self, sql):
-        try:
-            if params:
-                self.c.execute(sql, params)
-            else:
-                self.c.execute(sql)
-            self.conn.commit()
-        except:
-            print(traceback.format_exc())
 
     def addPatientToDB(self, word, meaning, phonetics):
         #add patient to database
