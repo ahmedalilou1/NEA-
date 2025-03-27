@@ -43,7 +43,7 @@ class Database:
     def close(self):
         self.conn.close()
 
-    def execute(self, sql, params=None):
+    def execute(self, sql):
         try:
             if params:
                 self.c.execute(sql, params)
@@ -57,7 +57,7 @@ class Database:
         #add patient to database
         self.c.execute("INSERT INTO words (word, meaning, phonetics) VALUES (?, ?, ?)", (word, meaning, phonetics))
 
-    def getWordsFromDB(self, wordList, debug=False):
+    def getWordsFromDB(self, wordList):
         self.c.execute("SELECT * FROM words")
         data = self.c.fetchall()    
         for item in data:
@@ -73,16 +73,10 @@ class Database:
         self.c.execute("SELECT * FROM words LEFT JOIN playerWords ON words.wordId = playerWords.wordId")
         data = self.c.fetchall()    
         for item in data:
-            newWord = []
-            newWord.append(item[0])
-            newWord.append(item[1])
-            newWord.append(item[2]) 
-            newWord.append(item[3]) 
-            newWord.append(item[4]) 
-            newWord.append(item[5])  
-            newWord.append(item[6]) 
-            newWord.append(item[7]) 
-            words.append(newWord)
+          newWord = []
+          for i in range(8):
+            newWord.append(item[i])
+          words.append(newWord)
         return words
 
     def addPlayerToDB(self, username, password, name):
